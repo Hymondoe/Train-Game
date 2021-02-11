@@ -7,4 +7,4 @@ class Train:
     slef.dir = dir      #Direction train is facing: v or h (vertical or horizontal)
     
 
-board = [[0] * 7 for _ in range(7)]
+board = [['-'] * 7 for _ in range(7)]
