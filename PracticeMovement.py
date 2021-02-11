@@ -25,3 +25,7 @@ for i in range(s):
     for j in range(s):
         print board[j][i],
     print ""
+
+EverythingYoullEverNeed = []
+while True:
+    STRING = input("enter the movement you want in this format: Train #, Direction you want it to move (N,E,S,W), how far you want it to move")
