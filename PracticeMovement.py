@@ -1,3 +1,4 @@
+#This is in Python3, if you're using regular Python the only change you should have to make it to delete the parentheses at all the print statements and add a space inbetween 'print' and what is being printed
 class Train:
   def __init__(self, x, y, size, id, dir):
     self.x = x          #Row where train starts (highest position, closest to top/0): 0-6
@@ -10,9 +11,11 @@ s = 7
 board = [['-'] * 7 for _ in range(7)]
 for i in range(s):
     for j in range(s):
-        board[j][i] = 0
+        board[j][i] = '-'
+        
+board[6][3] = 0
 Trains.append(Train(2,3,3,1,'h'))
-Trains.append(Train(6,0,4,2,'v'))
+Trains.append(Train(6,0,3,2,'v'))
 for k in Trains:
     if k.dir == 'h':
         for p in range(k.size):
@@ -23,9 +26,14 @@ for k in Trains:
         
 for i in range(s):
     for j in range(s):
-        print board[j][i],
-    print ""
+        print(board[j][i], end = "")
+    print("")
 
 EverythingYoullEverNeed = []
 while True:
-    STRING = input("enter the movement you want in this format: Train #, Direction you want it to move (N,E,S,W), how far you want it to move")
+    STRING = str(input("enter the movement you want in this format: 'Train #' 'Direction you want it to move (N,E,S,W)' 'how far you want it to move'"))
+    
+    Info = STRING.split(' ')
+    print(Info[0])
+    print(Info[1])
+    print(Info[2])
