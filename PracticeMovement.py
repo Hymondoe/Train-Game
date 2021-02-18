@@ -53,43 +53,35 @@ while True:
     STRING = str(input("Enter the movement you want in this format: 'Train #' 'Direction you want it to move (W,A,S,D)' 'how far you want it to move'"))
     
     Info = STRING.split(' ')
-    print(Info[0])
-    print(Info[1])
-    print(Info[2])
     if Info[1] == 'W':
         if Trains[int(Info[0])-1].dir == 'h':
-            print("can't move")
+            print("wrong way")
             break
-        for i in range(int(Info[2])):
-            if Trains[int(Info[0])-1].y == 0:
-                print("cant't move 1")
-            elif board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y - 1] == '-':
-                Trains[int(Info[0])-1].y -= int(Info[2])
+        else:
+            for i in range(int(Info[2])):
+                if board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y - 1] == '-' and Trains[int(Info[0])-1].y != 0:
+                    Trains[int(Info[0])-1].y -= 1
     if Info[1] == 'S':
         if Trains[int(Info[0])-1].dir == 'h':
-            print("can't move")
+            print("wrong way")
             break
-        for i in range(int(Info[2])):
-            if Trains[int(Info[0])-1].y >= s:
-                print("cant't move 1")
-            elif board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y + 1] == '-':
-                Trains[int(Info[0])-1].y -= int(Info[2])
+        else:
+            for i in range(int(Info[2])):
+                if board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y + 1] == '-' and Trains[int(Info[0])-1].y < s:
+                    Trains[int(Info[0])-1].y -= 1
     if Info[1] == 'A':
         if Trains[int(Info[0])-1].dir == 'v':
-            print("can't move")
+            print("wrong way")
             break
-        for i in range(int(Info[2])):
-            if Trains[int(Info[0])-1].x == 0:
-                print("cant't move 1")
-            elif board[Trains[int(Info[0])-1].x - 1][Trains[int(Info[0])-1].y] == '-':
-                Trains[int(Info[0])-1].y -= int(Info[2])
+        else:
+            for i in range(int(Info[2])):
+                if board[Trains[int(Info[0])-1].x - 1][Trains[int(Info[0])-1].y] == '-' and Trains[int(Info[0])-1].x != 0:
+                    Trains[int(Info[0])-1].x -= 1
     if Info[1] == 'D':
         if Trains[int(Info[0])-1].dir == 'v':
-            print("can't move")
-        for i in range(int(Info[2])):
-            if Trains[int(Info[0])-1].x >= s:
-                print("cant't move 1")
-            elif board[Trains[int(Info[0])-1].x + 1][Trains[int(Info[0])-1].y] == '-':
-                Trains[int(Info[0])-1].y -= int(Info[2])
+            print("wrong way")
+        else:
+            for i in range(int(Info[2])):
+                if (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == '-' or (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == 0)) and Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size < s - 1:
+                    Trains[int(Info[0])-1].x += 1
     Trains, board = redraw(Trains, board)
-            
