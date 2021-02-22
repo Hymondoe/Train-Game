@@ -59,7 +59,7 @@ while True:
             break
         else:
             for i in range(int(Info[2])):
-                if board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y - 1] == '-' and Trains[int(Info[0])-1].y != 0:
+                if Trains[int(Info[0])-1].y - 1 >= 0 and (board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y - 1] == '-' or board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y - 1] == 0):
                     Trains[int(Info[0])-1].y -= 1
     if Info[1] == 'S':
         if Trains[int(Info[0])-1].dir == 'h':
@@ -67,8 +67,8 @@ while True:
             break
         else:
             for i in range(int(Info[2])):
-                if board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y + 1] == '-' and Trains[int(Info[0])-1].y < s:
-                    Trains[int(Info[0])-1].y -= 1
+                if Trains[int(Info[0])-1].y + Trains[int(Info[0])-1].size >= s-1 and (board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y + Trains[int(Info[0])-1].size] == '-' or board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y + Trains[int(Info[0])-1].size] == 0):
+                    Trains[int(Info[0])-1].y += 1
     if Info[1] == 'A':
         if Trains[int(Info[0])-1].dir == 'v':
             print("wrong way")
@@ -82,6 +82,7 @@ while True:
             print("wrong way")
         else:
             for i in range(int(Info[2])):
-                if (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == '-' or (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == 0)) and Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size < s - 1:
+                print((board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == '-'))
+                if (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == '-' or (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == 0)) and Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size - 1 < s - 1:
                     Trains[int(Info[0])-1].x += 1
     Trains, board = redraw(Trains, board)
