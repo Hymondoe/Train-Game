@@ -53,36 +53,37 @@ while True:
     STRING = str(input("Enter the movement you want in this format: 'Train #' 'Direction you want it to move (W,A,S,D)' 'how far you want it to move'"))
     
     Info = STRING.split(' ')
+    T = Trains[int(Info[0]) - 1]
     if Info[1] == 'W':
         if Trains[int(Info[0])-1].dir == 'h':
             print("wrong way")
             break
         else:
             for i in range(int(Info[2])):
-                if Trains[int(Info[0])-1].y - 1 >= 0 and (board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y - 1] == '-' or board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y - 1] == 0):
-                    Trains[int(Info[0])-1].y -= 1
+                if T.y - 1 >= 0 and (board[T.x][T.y - 1] == '-' or board[T.x][T.y - 1] == 0):
+                    T.y -= 1
     if Info[1] == 'S':
         if Trains[int(Info[0])-1].dir == 'h':
             print("wrong way")
             break
         else:
             for i in range(int(Info[2])):
-                if Trains[int(Info[0])-1].y + Trains[int(Info[0])-1].size >= s-1 and (board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y + Trains[int(Info[0])-1].size] == '-' or board[Trains[int(Info[0])-1].x][Trains[int(Info[0])-1].y + Trains[int(Info[0])-1].size] == 0):
-                    Trains[int(Info[0])-1].y += 1
+                if T.y + T.size < s and (board[T.x][T.y + T.size] == '-' or board[T.x][T.y + T.size] == 0):
+                    T.y += 1
     if Info[1] == 'A':
         if Trains[int(Info[0])-1].dir == 'v':
             print("wrong way")
             break
         else:
             for i in range(int(Info[2])):
-                if board[Trains[int(Info[0])-1].x - 1][Trains[int(Info[0])-1].y] == '-' and Trains[int(Info[0])-1].x != 0:
-                    Trains[int(Info[0])-1].x -= 1
+                if T.x - 1 >= 0 and (board[T.x - 1][T.y] == '-' or board[T.x - 1][T.y] == 0):
+                    T.x -= 1
     if Info[1] == 'D':
         if Trains[int(Info[0])-1].dir == 'v':
             print("wrong way")
         else:
             for i in range(int(Info[2])):
-                print((board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == '-'))
-                if (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == '-' or (board[Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size][Trains[int(Info[0])-1].y] == 0)) and Trains[int(Info[0])-1].x + Trains[int(Info[0])-1].size - 1 < s - 1:
-                    Trains[int(Info[0])-1].x += 1
+                if T.x + T.size < s and (board[T.x + T.size][T.y] == '-' or board[T.x + T.size][T.y] == 0):
+                    T.x += 1
+    Trains[int(Info[0]) - 1] = T
     Trains, board = redraw(Trains, board)
