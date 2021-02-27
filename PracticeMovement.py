@@ -48,7 +48,6 @@ for i in range(s):
         print(board[j][i], end = "")
     print("")
 
-EverythingYoullEverNeed = []
 while True:
     STRING = str(input("Enter the movement you want in this format: 'Train #' 'Direction you want it to move (W,A,S,D)' 'how far you want it to move'"))
     
@@ -87,3 +86,6 @@ while True:
                     T.x += 1
     Trains[int(Info[0]) - 1] = T
     Trains, board = redraw(Trains, board)
+    if board[6][3] == 1:
+        print("You Won!")
+        break
